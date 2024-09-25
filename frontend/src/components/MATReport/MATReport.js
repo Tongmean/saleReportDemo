@@ -131,7 +131,7 @@ const MATReport = () => {
                 columns={columns}
                 size='middle'
                 loading={loading}
-                rowKey="matid"
+                // rowKey="matid"
                 pagination={{ pageSize: 100 }}
             />
         </div>

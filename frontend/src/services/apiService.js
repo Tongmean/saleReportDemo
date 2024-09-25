@@ -46,14 +46,15 @@ const apiService = {
             throw error;
         }
     },
-    verifyPin: async (data) => { //data.pin
+    verifyPin: async (pin) => { //data.pin
         try {
           console.log("---------------api.verifyPin-----------------");
-          console.log("req.data =", data, typeof(data));
-          const response = await axios.post(`${API_BASE_URL}/api/verifypin`, { ...{data} });
+          console.log("req.data =", pin, typeof(pin));
+          const response = await axios.post(`${API_BASE_URL}/api/verifypin`, { ...{pin} });
           console.log("res in api :", response);
           return response;
         } catch (error) {
+            console.log("log error in API :", error);
             throw error;
         }
     },
