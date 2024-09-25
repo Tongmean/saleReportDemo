@@ -24,11 +24,11 @@ const apiService = {
             throw error;
         }
     },
-    fetchSaleOeder: async (data) => {
+    fetchSaleOrder: async (startDate, endDate) => {
         try {
           console.log("---------------api.fetchSaleOeder-----------------");
-          console.log("req.data =", data, typeof(data));
-          const response = await axios.post(`${API_BASE_URL}/api/saleorder`, { ...{data} });
+          console.log("req.startDate =", startDate, typeof(startDate), "\n", "req.endDate =", endDate, typeof(endDate));
+          const response = await axios.post(`${API_BASE_URL}/api/saleorder`,{ startDate , endDate } );
           console.log("res in api :", response);
           return response;
         } catch (error) {

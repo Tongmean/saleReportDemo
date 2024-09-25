@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import MATReport from '../../components/MATReport/MATReport';
+import SaleOrderReport from '../../components/SaleOrderReport/SaleOrderReport';
 import './Homepage.css';
 
 const Home = () => {
@@ -10,7 +11,7 @@ const Home = () => {
     const renderSection = () => {
         switch (section) {
             case 'SaleOrder':
-                return <h2>Sale Order Report</h2>;
+                return <SaleOrderReport/>;
             case 'SetEnt':
                 return <h2>Set Ent Report</h2>;
             case 'CN':
@@ -20,7 +21,7 @@ const Home = () => {
             case 'DateConfrim':
                 return <h2>DateConfrim Report</h2>;
             default:
-                return <h2>null value</h2>;
+                return <SaleOrderReport/>;
         }
     };
 

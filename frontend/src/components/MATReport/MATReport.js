@@ -117,14 +117,14 @@ const MATReport = () => {
                 type="primary"
                 onClick={handleFetchMAT}
             >
-                fetch MAT report
+                ดึงข้อมูล
             </Button>
             <Button
                 type="primary"
                 onClick={handleCopyData}
                 disabled={MATData.length === 0}
             >
-                Copy Data
+                Copy
             </Button>
             <Table
                 dataSource={MATData}

@@ -3,7 +3,7 @@ const dbconnect = require('../dbconnect')
 const getSaleorder = async(req, res) =>{
     const startDate = req.body.startDate;
     const endDate = req.body.endDate;
-    console.log(startDate, endDate)
+    console.log("startDate", startDate, typeof(startDate), "\n endDate :", endDate, typeof(endDate));
     try {
         const sqlcommand =`
         SELECT 
