@@ -17,10 +17,7 @@ const VerifyPinProvider = ({ onVerified }) => {
     setLoading(true);
 
     try {
-      // แปลงค่าจาก string เป็น int
-      const pinInt = parseInt(pin, 10);
-
-      const response = await apiService.verifyPin(pinInt); // ส่งค่า pin ที่เป็น int
+      const response = await apiService.verifyPin(pin); // ส่งค่า pin ที่เป็น int
       if (response) {
         message.success('ยืนยัน PIN สำเร็จ');
         onVerified(); // เรียก callback เมื่อ PIN ถูกต้อง
