@@ -15,13 +15,13 @@ app.use(cors())
 app.use(express.json()); // Upcoming req to Json
 app.use(bodyParser.json());
 
-app.use('api/matid', matidRouter);
+app.use('/api/matid', matidRouter);
 
-app.use('api/saleorder', saleOrderRouter);
+app.use('/api/saleorder', saleOrderRouter);
 
-app.use('api/setend', setEndRouter);
+app.use('/api/setend', setEndRouter);
 
-app.use('api/creditnote', creditNoteRouter);
+app.use('/api/creditnote', creditNoteRouter);
 
 
 require('dotenv').config();
