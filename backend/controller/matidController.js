@@ -1,5 +1,4 @@
 const dbconnect = require('../dbconnect')
-const {removeDuplicates} = require('../ultility/removeDuplicates')
 
 const getMatid = async(req, res) =>{
     try {
@@ -15,7 +14,15 @@ const getMatid = async(req, res) =>{
                 public.mmmatunit_tbl, 
                 public.mmmat_tll
             WHERE 
-                mmmatunit_tbl.matid = mmmat_tll.matid;
+                mmmatunit_tbl.matid = mmmat_tll.matid
+            GROUP BY
+                mmmatunit_tbl.matunitid, 
+                mmmatunit_tbl.matunituserid, 
+                mmmatunit_tbl.matunitrefid, 
+                mmmatunit_tbl.matcategoryid, 
+                mmmatunit_tbl.matid, 
+                mmmat_tll.mat 
+            ;
         
         `;
         await dbconnect.query(sqlcommand, (err, result)=>{
@@ -29,13 +36,11 @@ const getMatid = async(req, res) =>{
             }else{
                 
                 // console.log(result.rows)
-                const removeduplicate = removeDuplicates(result.rows);
                 res.status(200).json({
                     success: true,
                     msg: "Query Matid success",
-                    data: removeduplicate,
-                    countlength: removeduplicate.length,
-                    countall: result.rows.length
+                    data: result.rows,
+                    countlength: result.rows.length,
                 })
             }
         })
