@@ -9,7 +9,8 @@ const apiService = {
           const response = await axios.get(`${API_BASE_URL}/`);
           return response.data;
         } catch (error) {
-          logError('getPackingListDB', error);
+        //   logError('getPackingListDB', error);
+            throw error;
         }
       },
 };
