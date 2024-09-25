@@ -14,7 +14,9 @@ const MATReport = () => {
         try {
             const response = await apiService.fetchMAT();
             if (response) {
-                console.log("fetchMAT complete: ", response.data.data.result);
+                console.log("fetchMAT complete: ", response.data.data);
+                const { countlength } = response.data.data || 0 ;
+                console.log("countlength server:", countlength)
                 setMATData(response.data.data);
             }
         } catch (error) {
@@ -32,29 +34,34 @@ const MATReport = () => {
 
     const columns = [
         {
-            title: 'A',
-            dataIndex: 'A',
-            key: 'A',
+            title: 'matid',
+            dataIndex: 'matid',
+            key: 'matid',
         },
         {
-            title: 'B',
-            dataIndex: 'B',
-            key: 'B',
+            title: 'matcategoryid',
+            dataIndex: 'matcategoryid',
+            key: 'matcategoryid',
         },
         {
-            title: 'C',
-            dataIndex: 'C',
-            key: 'C',
+            title: 'mat',
+            dataIndex: 'mat',
+            key: 'mat',
         },
         {
-            title: 'D',
-            dataIndex: 'D',
-            key: 'D',
+            title: 'matunitid',
+            dataIndex: 'matunitid',
+            key: 'matunitid',
         },
         {
-            title: 'E',
-            dataIndex: 'E',
-            key: 'E',
+            title: 'matunitrefid',
+            dataIndex: 'matunitrefid',
+            key: 'matunitrefid',
+        },
+        {
+            title: 'matunituserid',
+            dataIndex: 'matunituserid',
+            key: 'matunituserid',
         },
     ];
 
@@ -72,7 +79,8 @@ const MATReport = () => {
                 columns={columns}
                 size='middle'
                 loading={loading}
-                rowKey="pallet_no"
+                rowKey="matid"
+                // pagination={false}
             />
         </div>
     );
