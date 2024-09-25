@@ -38,12 +38,16 @@ const getCreditNote = async(req, res)=>{
                     res.status(500).json({
                         success: false,
                         msg: "There error due to database connection",
-                        data: err
+                        data: err,
+                        errorType: "database"
+
+
                     })
                 }else{
                     res.status(200).json({
                         success: true,
-                        msg: "Query credit note success"
+                        msg: "Query credit note success",
+                        data: result
                     })
                 }
             })
@@ -51,7 +55,9 @@ const getCreditNote = async(req, res)=>{
         res.status(500).json({
             success: false,
             msg: "There error due to database connection",
-            data: error
+            data: error,
+            errorType: "server-connection"
+
         })
     }
 }
