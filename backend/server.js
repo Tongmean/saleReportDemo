@@ -24,7 +24,7 @@ app.use('/api/setend', setEndRouter);
 
 app.use('/api/creditnote', creditNoteRouter);
 
-app.use('api/verifypin', verifyRouter);
+app.use('/api/verifypin', verifyRouter);
 
 
 require('dotenv').config();
