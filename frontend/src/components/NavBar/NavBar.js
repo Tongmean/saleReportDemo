@@ -1,16 +1,39 @@
-
 import React from 'react';
-import { Button } from 'antd';
 import './NavBar.css';
 
-const NavBar = ({ onSectionChange }) => {
+const NavBar = ({ onSectionChange, selectedSection }) => {
     return (
         <div className="navbar">
-            <Button onClick={() => onSectionChange('SaleOrder')}>Sale Order</Button>
-            <Button onClick={() => onSectionChange('SetEnt')}>Set Ent</Button>
-            <Button onClick={() => onSectionChange('CN')}>CN</Button>
-            <Button onClick={() => onSectionChange('MAT')}>MAT</Button>
-            <Button onClick={() => onSectionChange('DateConfirm')}>DateConfrim</Button>
+            <div
+                className={`nav-item ${selectedSection === 'SaleOrder' ? 'active' : ''}`}
+                onClick={() => onSectionChange('SaleOrder')}
+            >
+                Sale Order
+            </div>
+            <div
+                className={`nav-item ${selectedSection === 'SetEnt' ? 'active' : ''}`}
+                onClick={() => onSectionChange('SetEnt')}
+            >
+                Set Ent
+            </div>
+            <div
+                className={`nav-item ${selectedSection === 'CN' ? 'active' : ''}`}
+                onClick={() => onSectionChange('CN')}
+            >
+                CN
+            </div>
+            <div
+                className={`nav-item ${selectedSection === 'MAT' ? 'active' : ''}`}
+                onClick={() => onSectionChange('MAT')}
+            >
+                MAT
+            </div>
+            <div
+                className={`nav-item ${selectedSection === 'DateConfirm' ? 'active' : ''}`}
+                onClick={() => onSectionChange('DateConfirm')}
+            >
+                Date Confirm
+            </div>
         </div>
     );
 };

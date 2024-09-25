@@ -37,18 +37,64 @@
   }
 }
 
-/*!---------------------------------------------------------------------------------*/
+/*!------------------------------------static color---------------------------------------------*/
 
-/* .wrap-Table-show-plan .ant-table-placeholder {
-  height: 70vh;
-  min-height: 70vh;
-  width: 100%;
-  color: rgba(0, 0, 0, 0.45);
-  border: 2px solid green;
-} */
+:root {
+  --A: #03045e;
+  --B: #023e8a;
+  --C: #0096c7;
+  --D: #90e0ef;
+  --E: #caf0f8;
+
+
+}
+
+/*!------------------------------------ant Table---------------------------------------------*/
 
 .ant-table-placeholder {
-  height: 50vh;
-  min-height: 50vh;
+  height: 45vh;
+  min-height: 45vh;
   width: 100%;
+}
+
+/*!------------------------------------public style---------------------------------------------*/
+
+.header-report {
+  color: var(--A);
+  text-shadow: 2px 2px 2px var(--D);
+  font-weight: bolder;
+  /* border: 2PX  solid yellow; */
+  /* text-align: left; */
+}
+
+.compare-length {
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.compare-length span {
+  font-size: medium;
+  font-weight: bold;
+  margin: 0px 10px 15px;
+  color: #424242;
+}
+
+.button-part {
+  /* border: 2px solid rgb(0, 34, 255); */
+  margin: 10px 0;
+}
+
+.button-part Button {
+  /* border: 2px solid rgb(255, 0, 179); */
+  margin: 0px 20px;
+  width: 100px;
+}
+
+.SaleOrder-report, .SetEnd-report, .CN-report, .MAT-report, .DateConfirm-report {
+  border-radius: 15px;
+  border: 2px solid var(--A);
+  box-sizing: border-box;
+  scrollbar-width: auto;
 }

@@ -1,18 +1,39 @@
-
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #4e82cf;
-    padding: 10px;
+    background: linear-gradient(to right, var(--A), var(--B));
+    padding: 10px 20px;
     display: flex;
-    justify-content: left;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
-.navbar button {
-    margin: 0px 10px;
-    width: 10%;
+.nav-item {
+    margin: 0 20px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff; /* สีตัวอักษร */
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent; /* เส้นขีดใต้ */
+    position: relative; /* เพิ่ม position relative สำหรับกรอบ */
+}
+
+.nav-item:hover {
+    color: var(--D); /* เปลี่ยนสีเมื่อ hover */
+    border-bottom: 2px solid var(--highlight); /* แสดงเส้นขีดใต้เมื่อ hover */
+}
+
+.nav-item.active {
+    border: 2px solid var(--highlight); /* กรอบสำหรับแท็บที่เลือก */
+    border-radius: 5px; /* เพิ่มความโค้ง */
+    background-color: rgba(255, 255, 255, 0.2); /* พื้นหลังที่จาง */
+}
+
+.nav-item:active {
+    color: var(--active); /* สีเมื่อคลิก */
 }

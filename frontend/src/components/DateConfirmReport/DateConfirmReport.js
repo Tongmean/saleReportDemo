@@ -144,8 +144,8 @@ const DateConfirmReport = () => {
 
     return (
         <div className='DateConfirm-report'>
-            <h2>Date ConFirm Report</h2>
-            <div>
+            <h2 className='header-report'>Date ConFirm Report</h2>
+            <div className='compare-length'>
                 <span> จำนวนจาก database : {countByClient} </span>
                 <span> จำนวนที่ได้รับ : {countByServer} </span>
             </div>
@@ -155,20 +155,23 @@ const DateConfirmReport = () => {
                     onChange={(values) => setDates(values || [null, null])} // Safely set dates or default to [null, null]
                 />
             </div>
-            <Button
-                type="primary"
-                onClick={handlefetchDateConfirm}
-                disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
-            >
-                ดึงข้อมูล
-            </Button>
-            <Button
-                type="primary"
-                onClick={handleCopyData}
-                disabled={DateConfirmData.length === 0}
-            >
-                Copy
-            </Button>
+            <div className='button-part'>
+                <Button
+                    type="primary"
+                    onClick={handlefetchDateConfirm}
+                    disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
+                >
+                    ดึงข้อมูล
+                </Button>
+                <Button
+                    type="primary"
+                    onClick={handleCopyData}
+                    disabled={DateConfirmData.length === 0}
+                >
+                    Copy
+                </Button>
+            </div>
+            
             <Table
                 dataSource={DateConfirmData}
                 columns={columns}

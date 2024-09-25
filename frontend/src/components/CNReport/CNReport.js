@@ -238,8 +238,8 @@ const CNReport = () => {
 
     return (
         <div className='CN-report'>
-            <h2>Cradit Note Report</h2>
-            <div>
+            <h2 className='header-report'>Cradit Note Report</h2>
+            <div className='compare-length'>
                 <span> จำนวนจาก database : {countByClient} </span>
                 <span> จำนวนที่ได้รับ : {countByServer} </span>
             </div>
@@ -249,20 +249,23 @@ const CNReport = () => {
                     onChange={(values) => setDates(values || [null, null])} // Safely set dates or default to [null, null]
                 />
             </div>
-            <Button
-                type="primary"
-                onClick={handleFetchCN}
-                disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
-            >
-                ดึงข้อมูล
-            </Button>
-            <Button
-                type="primary"
-                onClick={handleCopyData}
-                disabled={CNData.length === 0}
-            >
-                Copy
-            </Button>
+            <div className='button-part'>
+                <Button
+                    type="primary"
+                    onClick={handleFetchCN}
+                    disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
+                >
+                    ดึงข้อมูล
+                </Button>
+                <Button
+                    type="primary"
+                    onClick={handleCopyData}
+                    disabled={CNData.length === 0}
+                >
+                    Copy
+                </Button>
+                </div>
+            
             <Table
                 dataSource={CNData}
                 columns={columns}

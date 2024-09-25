@@ -1,7 +1,5 @@
-
 import { useState } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
-
 import MATReport from '../../components/MATReport/MATReport';
 import SaleOrderReport from '../../components/SaleOrderReport/SaleOrderReport';
 import SetEndReport from '../../components/SetEndReport/SetEndReport';
@@ -10,28 +8,28 @@ import DateConfirmReport from '../../components/DateConfirmReport/DateConfirmRep
 import './Homepage.css';
 
 const Home = () => {
-    const [section, setSection] = useState('CN'); // เริ่มต้นที่ 'CN'
+    const [section, setSection] = useState('SaleOrder');
 
     const renderSection = () => {
         switch (section) {
             case 'SaleOrder':
-                return <SaleOrderReport/>;
+                return <SaleOrderReport />;
             case 'SetEnt':
-                return <SetEndReport/>;
+                return <SetEndReport />;
             case 'CN':
-                return <CNReport/>;
+                return <CNReport />;
             case 'MAT':
                 return <MATReport />;
             case 'DateConfirm':
-                return <DateConfirmReport/>;
+                return <DateConfirmReport />;
             default:
-                return <SaleOrderReport/>;
+                return <SaleOrderReport />;
         }
     };
 
     return (
         <div className='home-page'>
-            <NavBar onSectionChange={setSection} />
+            <NavBar onSectionChange={setSection} selectedSection={section} />
             <div className='content'>
                 {renderSection()}
             </div>

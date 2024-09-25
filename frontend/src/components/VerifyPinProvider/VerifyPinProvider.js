@@ -45,20 +45,26 @@ const VerifyPinProvider = ({ onVerified }) => {
   };
 
   return (
-    <div className="verify-pin">
-      <h2>กรุณากรอก PIN</h2>
-      <Input
-        type="password"
-        value={pin}
-        maxLength={4}
-        onChange={handlePinChange}
-        placeholder="PIN 4 หลัก"
-        disabled={loading}
-        style={{ width: '200px', marginBottom: '10px' }}
-      />
-      <Button type="primary" onClick={handlePinSubmit} loading={loading}>
-        ยืนยัน
-      </Button>
+    <div className='VerifyPinProvider'>
+      <div className='welcome-login'>
+        <h2>ยินดีต้อนรับเข้าสู่ระบบดึงรายงาน Backup ERP</h2>
+        <p>กรุณากรอก PIN เพื่อเข้าใช้งานระบบ <br></br> หากระบบมีปัญหาหรือไม่สามารถเข้าสู่ระบบได้โปรดติดต่อผู้ดูแลระบบ</p>
+      </div>
+      <div className="verify-pin">
+        <h2>กรุณากรอก PIN</h2>
+        <Input
+          type="password"
+          value={pin}
+          maxLength={4}
+          onChange={handlePinChange}
+          placeholder="PIN 4 หลัก"
+          disabled={loading}
+          style={{ width: '200px', marginBottom: '10px' }}
+        />
+        <Button type="primary" onClick={handlePinSubmit} loading={loading}>
+          ยืนยัน
+        </Button>
+    </div>
     </div>
   );
 };

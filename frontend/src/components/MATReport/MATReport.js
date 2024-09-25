@@ -108,24 +108,26 @@ const MATReport = () => {
 
     return (
         <div className='MAT-report'>
-            <h2>MAT Report</h2>
-            <div>
+            <h2 className='header-report'>MAT Report</h2>
+            <div className='compare-length'>
                 <span> จำนวนจาก database : {countByClient} </span>
                 <span> จำนวนที่ได้รับ : {countByServer} </span>
             </div>
-            <Button
-                type="primary"
-                onClick={handleFetchMAT}
-            >
-                ดึงข้อมูล
-            </Button>
-            <Button
-                type="primary"
-                onClick={handleCopyData}
-                disabled={MATData.length === 0}
-            >
-                Copy
-            </Button>
+            <div className='button-part'>
+                <Button
+                    type="primary"
+                    onClick={handleFetchMAT}
+                >
+                    ดึงข้อมูล
+                </Button>
+                <Button
+                    type="primary"
+                    onClick={handleCopyData}
+                    disabled={MATData.length === 0}
+                >
+                    Copy
+                </Button>
+            </div>
             <Table
                 dataSource={MATData}
                 columns={columns}

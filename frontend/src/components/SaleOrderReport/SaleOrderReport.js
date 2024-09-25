@@ -232,8 +232,8 @@ const SaleOrderReport = () => {
 
     return (
         <div className='SaleOrder-report'>
-            <h2>Sale Order Report</h2>
-            <div>
+            <h2 className='header-report'>Sale Order Report</h2>
+            <div className='compare-length'>
                 <span> จำนวนจาก database : {countByClient} </span>
                 <span> จำนวนที่ได้รับ : {countByServer} </span>
             </div>
@@ -243,27 +243,30 @@ const SaleOrderReport = () => {
                     onChange={(values) => setDates(values || [null, null])} // Safely set dates or default to [null, null]
                 />
             </div>
-            <Button
-                type="primary"
-                onClick={handleFetchSaleOrder}
-                disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
-            >
-                ดึงข้อมูล
-            </Button>
-            <Button
-                type="primary"
-                onClick={handleCopyData}
-                disabled={SaleOrderData.length === 0}
-            >
-                Copy
-            </Button>
+            <div className='button-part'>
+                <Button
+                    type="primary"
+                    onClick={handleFetchSaleOrder}
+                    disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
+                >
+                    ดึงข้อมูล
+                </Button>
+                <Button
+                    type="primary"
+                    onClick={handleCopyData}
+                    disabled={SaleOrderData.length === 0}
+                >
+                    Copy
+                </Button>
+            </div>
+
             <Table
-                dataSource={SaleOrderData}
-                columns={columns}
-                size='small'
-                loading={loading}
-                pagination={{ pageSize: 100 }}
-            />
+                    dataSource={SaleOrderData}
+                    columns={columns}
+                    size='small'
+                    loading={loading}
+                    pagination={{ pageSize: 100 }}
+                />
         </div>
     );
 };
