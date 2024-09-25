@@ -3,10 +3,12 @@ require('dotenv').config();
 
 // Create a new pool with connection details
 const dbconnect = new Pool({
-  user: 'warakorn',
-  host: '192.168.1.29',
-  database: 'cerp',
-  password: 'W@rnKorn',
+  
+  user: process.env.user,
+  host: process.env.host,
+  database: process.env.database,
+  password: process.env.password,
+
   max: 20,
   idleTimeoutMillis: 600000,  // Increase idle timeout
   connectionTimeoutMillis: 100000,  // Increase connection timeout
