@@ -94,7 +94,7 @@
 
 .SaleOrder-report, .SetEnd-report, .CN-report, .MAT-report, .DateConfirm-report {
   border-radius: 15px;
-  border: 2px solid var(--A);
+  /* border: 2px solid var(--A); */
   box-sizing: border-box;
   scrollbar-width: auto;
 }
