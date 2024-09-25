@@ -10,6 +10,7 @@ const matidRouter = require('./route/matidRoute');
 const saleOrderRouter = require('./route/saleOrderRoute');
 const setEndRouter = require('./route/setEndRoute')
 const creditNoteRouter = require('./route/creditNoteRoute')
+const verifyRouter = require('./route/verifyRoute')
 //Middleware
 app.use(cors())
 app.use(express.json()); // Upcoming req to Json
@@ -22,6 +23,8 @@ app.use('/api/saleorder', saleOrderRouter);
 app.use('/api/setend', setEndRouter);
 
 app.use('/api/creditnote', creditNoteRouter);
+
+app.use('api/verifypin', verifyRouter);
 
 
 require('dotenv').config();

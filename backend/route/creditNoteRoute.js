@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {getCreditNote} = require('../controller/creditNoteController');
 
-router.get('/',getCreditNote);
+router.post('/',getCreditNote);
 
 
 

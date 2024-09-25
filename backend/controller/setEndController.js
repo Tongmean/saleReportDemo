@@ -34,7 +34,9 @@ const getsetEnd = async(req, res) =>{
                 res.status(500).json({
                     success: false,
                     msg: "There error due to database connection",
-                    data: err
+                    data: err,
+                    errorType: "database"
+
                 })
             }else{
                 res.status(200).json({
@@ -48,7 +50,9 @@ const getsetEnd = async(req, res) =>{
         res.status(500).json({
             success: false,
             msg: "There error due to database connection",
-            data: error
+            data: error,
+            errorType: "server-connection"
+
         })
     }
 
