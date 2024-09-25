@@ -29,7 +29,7 @@ const getsetEnd = async(req, res) =>{
             sasalesorderitem_tbl.st_ended >= $1 AND sasalesorderitem_tbl.st_ended <= $2;
       
         `;
-        dbconnect(sqlcommand, [startDate, endDate], (err, result)=>{
+        await dbconnect.query(sqlcommand, [startDate, endDate], (err, result)=>{
             if(err){
                 res.status(500).json({
                     success: false,
@@ -42,7 +42,9 @@ const getsetEnd = async(req, res) =>{
                 res.status(200).json({
                     success: true,
                     msg: "Query setEnd success",
-                    data: result.rows
+                    data: result.rows,
+                    countlength: result.rows.length
+
                 })
             }
         })

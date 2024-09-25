@@ -26,10 +26,13 @@ const getMatid = async(req, res) =>{
                     errorType: "database"
                 })
             }else{
+                
+                // console.log(result.rows)
                 res.status(200).json({
                     success: true,
                     msg: "Query Matid success",
-                    data: result.rows
+                    data: result.rows,
+                    countlength: result.rows.length
                 })
             }
         })

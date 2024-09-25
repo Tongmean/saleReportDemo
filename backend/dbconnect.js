@@ -8,8 +8,8 @@ const dbconnect = new Pool({
   database: 'cerp',
   password: 'W@rnKorn',
   max: 20,
-  idleTimeoutMillis: 60000,  // Increase idle timeout
-  connectionTimeoutMillis: 10000,  // Increase connection timeout
+  idleTimeoutMillis: 600000,  // Increase idle timeout
+  connectionTimeoutMillis: 100000,  // Increase connection timeout
   keepAlive: false,  // Disable keep-alive for now
 });
 // Connect to the database

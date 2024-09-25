@@ -3,6 +3,7 @@ const dbconnect = require('../dbconnect')
 const getSaleorder = async(req, res) =>{
     const startDate = req.body.startDate;
     const endDate = req.body.endDate;
+    console.log(startDate, endDate)
     try {
         const sqlcommand =`
         SELECT 
@@ -31,8 +32,9 @@ const getSaleorder = async(req, res) =>{
             AND sasalesorder_tbl.st_confirmed <= $2;
     
         `
-        dbconnect(sqlcommand,[startDate, endDate], (err,result)=>{
+        await dbconnect.query(sqlcommand,[startDate, endDate], (err,result)=>{
             if(err){
+                console.log(err)
                 res.status(500).json({
                     success: false,
                     msg: "There error due to database connection",
@@ -44,11 +46,14 @@ const getSaleorder = async(req, res) =>{
                 res.status(200).json({
                     success: true,
                     msg: "Query sale order success",
-                    data: result.rows
+                    data: result.rows,
+                    countlength: result.rows.length
+
                 })
             }
         })
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             success: false,
             msg: "There error due to database connection",

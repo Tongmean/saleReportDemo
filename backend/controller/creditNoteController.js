@@ -33,7 +33,7 @@ const getCreditNote = async(req, res)=>{
                 arsalescreditnote_tbl.st_processed >= $1 
                 AND arsalescreditnote_tbl.st_processed <= $2;
             `;
-            dbconnect(sqlcommand, [startDate, endDate], (err, result)=>{
+            await dbconnect.query(sqlcommand, [startDate, endDate], (err, result)=>{
                 if(err){
                     res.status(500).json({
                         success: false,
@@ -47,7 +47,9 @@ const getCreditNote = async(req, res)=>{
                     res.status(200).json({
                         success: true,
                         msg: "Query credit note success",
-                        data: result
+                        data: result.rows,
+                        countlength: result.rows.length
+
                     })
                 }
             })
