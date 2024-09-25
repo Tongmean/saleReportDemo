@@ -3,21 +3,21 @@ const dbconnect = require('../dbconnect')
 const getMatid = async(req, res) =>{
     try {
         const sqlcommand = `
-        SELECT 
-            mmmatunit_tbl.matunitid, 
-            mmmatunit_tbl.matunituserid, 
-            mmmatunit_tbl.matunitrefid, 
-            mmmatunit_tbl.matcategoryid, 
-            mmmatunit_tbl.matid, 
-            mmmat_tll.mat
-        FROM 
-            public.mmmatunit_tbl, 
-            public.mmmat_tll
-        WHERE 
-            mmmatunit_tbl.matid = mmmat_tll.matid;
-      
+            SELECT 
+                mmmatunit_tbl.matunitid, 
+                mmmatunit_tbl.matunituserid, 
+                mmmatunit_tbl.matunitrefid, 
+                mmmatunit_tbl.matcategoryid, 
+                mmmatunit_tbl.matid, 
+                mmmat_tll.mat
+            FROM 
+                public.mmmatunit_tbl, 
+                public.mmmat_tll
+            WHERE 
+                mmmatunit_tbl.matid = mmmat_tll.matid;
+        
         `;
-        dbconnect.query(sqlcommand, (err, result)=>{
+        await dbconnect.query(sqlcommand, (err, result)=>{
             if(err){
                 res.status(500).json({
                     success: false,
@@ -27,7 +27,7 @@ const getMatid = async(req, res) =>{
             }else{
                 res.status(200).json({
                     success: true,
-                    msg: "There error due to database connection",
+                    msg: "Query Matid success",
                     data: result.rows
                 })
             }
