@@ -35,13 +35,13 @@ const getSaleorder = async(req, res) =>{
             if(err){
                 res.status(500).json({
                     success: false,
-                    msg: "Query sale order success",
+                    msg: "There error due to database connection",
                     data: err
                 })
             }else{
                 res.status(200).json({
                     success: true,
-                    msg: "There error due to database connection",
+                    msg: "Query sale order success",
                     data: result.rows
                 })
             }
