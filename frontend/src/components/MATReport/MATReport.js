@@ -1,0 +1,81 @@
+import { react, useState, useEffect } from 'react';
+import { Button, message, Table } from 'antd';
+import apiService from '../../services/apiService';
+import './MATReport.css'
+
+const MATReport = () => {
+    const [MATData, setMATData] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const handleFetchMAT = async () => {
+        console.log("active-handleFetchMAT");
+        setLoading(true);
+
+        try {
+            const response = await apiService.fetchMAT();
+            if (response) {
+                console.log("fetchMAT complete: ", response.data.data.result);
+                setMATData(response.data.data);
+            }
+        } catch (error) {
+            if (error.response && error.response.data.errorType === "database") {
+                message.error("ฐานข้อมูลล้มเหลว โปรติดต่อผู้ดูแลระบบ [Database error]");
+            } else if (error.response && error.response.data.errorType === "server-connection") {
+                message.error("ระบบล้มเหลวโปรดติดต่อผู้ดูแลระบบ [Server error]");
+            } else {
+                message.error("ระบบล้มเหลวเหลว [undefine error]");
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const columns = [
+        {
+            title: 'A',
+            dataIndex: 'A',
+            key: 'A',
+        },
+        {
+            title: 'B',
+            dataIndex: 'B',
+            key: 'B',
+        },
+        {
+            title: 'C',
+            dataIndex: 'C',
+            key: 'C',
+        },
+        {
+            title: 'D',
+            dataIndex: 'D',
+            key: 'D',
+        },
+        {
+            title: 'E',
+            dataIndex: 'E',
+            key: 'E',
+        },
+    ];
+
+    return (
+        <div className='MAT-report'>
+            <h2>MATReport comp</h2>
+            <Button
+                type="primary"
+                onClick={handleFetchMAT}
+            >
+                fetch MAT report
+            </Button>
+            <Table
+                dataSource={MATData}
+                columns={columns}
+                size='middle'
+                loading={loading}
+                rowKey="pallet_no"
+            />
+        </div>
+    );
+};
+
+export default MATReport;
