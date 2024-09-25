@@ -2,8 +2,9 @@ require('dotenv').config();
 
 const verifypin = async(req, res)=>{
     const pin = req.body.pin;
+    console.log(pin)
     try {
-        if(pin = process.env.pin){
+        if(pin == process.env.pin){
             res.status(200).json({
                 msg: "pin is correct",
                 success: true,
@@ -15,6 +16,7 @@ const verifypin = async(req, res)=>{
             })
         }
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             success: false,
             msg: "There error due to database connection",
