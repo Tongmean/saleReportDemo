@@ -1,0 +1,18 @@
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4e82cf;
+    padding: 10px;
+    display: flex;
+    justify-content: right;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.navbar button {
+    margin: 0px 10px;
+    width: 10%;
+}

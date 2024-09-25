@@ -108,7 +108,7 @@ const MATReport = () => {
 
     return (
         <div className='MAT-report'>
-            <h2>MATReport comp</h2>
+            <h2>MAT Report</h2>
             <div>
                 <span> จำนวนจาก database : {countByClient} </span>
                 <span> จำนวนที่ได้รับ : {countByServer} </span>
@@ -132,7 +132,7 @@ const MATReport = () => {
                 size='middle'
                 loading={loading}
                 rowKey="matid"
-                // pagination={false}
+                pagination={{ pageSize: 100 }}
             />
         </div>
     );

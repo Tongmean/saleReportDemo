@@ -6,3 +6,12 @@
     width: 100%;
     height: 100%;
 }
+
+/* src/pages/Home/Homepage.css */
+.home-page {
+    padding-top: 60px; /* เพื่อให้เนื้อหาไม่ทับกับ NavBar */
+}
+
+.content {
+    padding: 20px;
+}
