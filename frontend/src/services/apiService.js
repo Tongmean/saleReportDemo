@@ -13,7 +13,7 @@ const apiService = {
             throw error;
         }
     },
-    fetchCN: async (data) => {
+    fetchCN: async (data) => { // MM-DD-YYYY
         try {
           console.log("---------------api.fetchCN-----------------");
           console.log("req.data =", data, typeof(data));
