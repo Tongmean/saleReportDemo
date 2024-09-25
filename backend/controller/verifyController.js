@@ -9,14 +9,6 @@ const verifypin = async (req, res) => {
             return res.status(200).json({
                 msg: "pin is correct",
                 success: true,
-<<<<<<< HEAD
-            })
-        }else{
-            res.status(401).json({
-                msg: "pin is Incorrect",
-                success: false,
-            })
-=======
             });
         } else {
             // If the pin is incorrect
@@ -24,7 +16,6 @@ const verifypin = async (req, res) => {
                 msg: "pin is Incorrect",
                 success: false,
             });
->>>>>>> e95b7af51c83879f2a26a401277ccb109e32ab5f
         }
     } catch (error) {
         console.log(error);

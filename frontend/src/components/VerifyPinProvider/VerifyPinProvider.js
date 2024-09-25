@@ -23,8 +23,13 @@ const VerifyPinProvider = ({ onVerified }) => {
         onVerified(); // เรียก callback เมื่อ PIN ถูกต้อง
       }
     } catch (error) {
-        message.error('PIN ไม่ถูกต้อง กรุณาลองอีกครั้ง');
-        setPin(''); // รีเซ็ตฟอร์ม PIN
+        if (error.status == 401) {
+            message.error('PIN ไม่ถูกต้อง กรุณาลองอีกครั้ง');
+            setPin(''); // รีเซ็ตฟอร์ม PIN
+        } else if (error.status == 500) {
+            message.error('เซิร์ฟเวอร์ล้มเหลว กรุณาติดต่อผู้ดูแลระบบ');
+            setPin(''); // รีเซ็ตฟอร์ม PIN
+        }
     } finally {
       setLoading(false);
     }
