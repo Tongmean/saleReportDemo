@@ -5,15 +5,23 @@ const app = express();
 const cors = require('cors')
 //Call body-parser
 const bodyParser = require('body-parser');
-
-const dbconnect = require('./dbconnect')
-const matidRouter = require('./route/matidRoute')
+//import router
+const matidRouter = require('./route/matidRoute');
+const saleOrderRouter = require('./route/saleOrderRoute');
+const setEndRouter = require('./route/setEndRoute')
+const creditNoteRouter = require('./route/creditNoteRoute')
 //Middleware
 app.use(cors())
 app.use(express.json()); // Upcoming req to Json
 app.use(bodyParser.json());
 
-app.use('api/matid', matidRouter)
+app.use('api/matid', matidRouter);
+
+app.use('api/saleorder', saleOrderRouter);
+
+app.use('api/setend', setEndRouter);
+
+app.use('api/creditnote', creditNoteRouter);
 
 
 require('dotenv').config();
