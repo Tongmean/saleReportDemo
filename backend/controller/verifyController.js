@@ -1,36 +1,32 @@
 require('dotenv').config();
 
-const verifypin = async(req, res)=>{
+const verifypin = async (req, res) => {
     const pin = req.body.pin;
-    console.log(pin)
+    console.log(pin, typeof(pin));
     try {
-        if(pin == process.env.pin){
-            res.status(200).json({
+        // Check if the pin is correct
+        if (pin === process.env.pin) {
+            return res.status(200).json({
                 msg: "pin is correct",
                 success: true,
-            })
-        if(pin !==process.env.pin){
-            res.status(401).json({
+            });
+        } else {
+            // If the pin is incorrect
+            return res.status(401).json({
                 msg: "pin is Incorrect",
-                success: flase,
-            })
-        }
-        }else{
-            res.status(500).json({
-                msg: "pin is Incorrect",
-                success: flase,
-            })
+                success: false,
+            });
         }
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(500).json({
             success: false,
-            msg: "There error due to database connection",
-            data: error
-        })
+            msg: "There was an error due to a database connection",
+            data: error,
+        });
     }
-} 
+};
 
-module.exports ={
-    verifypin
-}
+module.exports = {
+    verifypin,
+};
