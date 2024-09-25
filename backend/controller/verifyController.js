@@ -9,16 +9,10 @@ const verifypin = async(req, res)=>{
                 msg: "pin is correct",
                 success: true,
             })
-        if(pin !==process.env.pin){
+        }else{
             res.status(401).json({
                 msg: "pin is Incorrect",
-                success: flase,
-            })
-        }
-        }else{
-            res.status(500).json({
-                msg: "pin is Incorrect",
-                success: flase,
+                success: false,
             })
         }
     } catch (error) {

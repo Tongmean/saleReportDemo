@@ -1,5 +1,5 @@
 const dbconnect = require('../dbconnect')
-
+const {removeDuplicates} = require('../ultility/removeDuplicates')
 const getCreditNote = async(req, res)=>{
     const startDate = req.body.startDate;
     const endDate = req.body.endDate;
@@ -44,11 +44,13 @@ const getCreditNote = async(req, res)=>{
 
                     })
                 }else{
+                    const removeduplicate = removeDuplicates(result.rows)
                     res.status(200).json({
                         success: true,
                         msg: "Query credit note success",
-                        data: result.rows,
-                        countlength: result.rows.length
+                        data: removeduplicate,
+                        countlength: removeduplicate.length,
+                        countall: result.rows.length
 
                     })
                 }
