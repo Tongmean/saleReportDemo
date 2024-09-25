@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+/*!---------------------------------------------------------------------------------*/
+
+/* .wrap-Table-show-plan .ant-table-placeholder {
+  height: 70vh;
+  min-height: 70vh;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.45);
+  border: 2px solid green;
+} */
+
+.ant-table-placeholder {
+  height: 50vh;
+  min-height: 50vh;
+  width: 100%;
+}

@@ -10,7 +10,7 @@ const NavBar = ({ onSectionChange }) => {
             <Button onClick={() => onSectionChange('SetEnt')}>Set Ent</Button>
             <Button onClick={() => onSectionChange('CN')}>CN</Button>
             <Button onClick={() => onSectionChange('MAT')}>MAT</Button>
-            <Button onClick={() => onSectionChange('DateConfrim')}>DateConfrim</Button>
+            <Button onClick={() => onSectionChange('DateConfirm')}>DateConfrim</Button>
         </div>
     );
 };

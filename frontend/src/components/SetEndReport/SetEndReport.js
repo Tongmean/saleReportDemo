@@ -1,13 +1,13 @@
 import { React, useState, useEffect } from 'react';
 import { Button, message, Table, DatePicker } from 'antd';
 import apiService from '../../services/apiService';
-import './SaleOrderReport.css';
+import './SetEndReport.css';
 import moment from 'moment';
 
 const { RangePicker } = DatePicker;
 
-const SaleOrderReport = () => {
-    const [SaleOrderData, setSaleOrderData] = useState([]);
+const SetEndReport = () => {
+    const [setEndData, setSetEndData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [countByServer, setCountByServer] = useState(0);
     const [countByClient, setCountByClient] = useState(0);
@@ -17,7 +17,7 @@ const SaleOrderReport = () => {
         console.log("Selected dates: ", dates);
     }, [dates]);
 
-    const handleFetchSaleOrder = async () => {
+    const handleFetchSetEnd = async () => {
         console.log("Fetching data with selected dates");
         setLoading(true);
 
@@ -35,7 +35,7 @@ const SaleOrderReport = () => {
         console.log(`Request startDate: ${startDate}, endDate: ${endDate}`);
 
         try {
-            const response = await apiService.fetchSaleOrder(startDate, endDate);
+            const response = await apiService.fetchSetEnd(startDate, endDate);
             if (response) {
                 console.log("Data fetched successfully: ", response.data.data);
                 const countlength = response.data.countlength || 0;
@@ -50,7 +50,7 @@ const SaleOrderReport = () => {
                     console.log("Warning: The number of records does not match the countlength!");
                 }
 
-                setSaleOrderData(response.data.data);
+                setSetEndData(response.data.data);
                 setCountByServer(countlength);
                 setCountByClient(dataLength);
             }
@@ -68,7 +68,7 @@ const SaleOrderReport = () => {
     };
 
     const handleCopyData = () => {
-        if (SaleOrderData.length === 0) {
+        if (setEndData.length === 0) {
             message.warning("ไม่มีข้อมูลให้คัดลอก");
             return;
         }
@@ -109,10 +109,10 @@ const SaleOrderReport = () => {
             return value; // Default case
         };
 
-        // Transform the SaleOrderData into TSV format with specific column formatting
+        // Transform the setEndData into TSV format with specific column formatting
         const tsvData = [
             headers.join('\t'), // Join headers with tabs
-            ...SaleOrderData.map(row => 
+            ...setEndData.map(row => 
                 [
                     moment(row.datedoc).format('DD-MM-YYYY HH:mm'), // 'datedoc'
                     formatValue('salesorderuserid', row.salesorderuserid), // 'salesorderuserid'
@@ -231,8 +231,8 @@ const SaleOrderReport = () => {
     
 
     return (
-        <div className='SaleOrder-report'>
-            <h2>Sale Order Report</h2>
+        <div className='SetEnd-report'>
+            <h2>Set End Report</h2>
             <div>
                 <span> จำนวนจาก database : {countByClient} </span>
                 <span> จำนวนที่ได้รับ : {countByServer} </span>
@@ -245,7 +245,7 @@ const SaleOrderReport = () => {
             </div>
             <Button
                 type="primary"
-                onClick={handleFetchSaleOrder}
+                onClick={handleFetchSetEnd}
                 disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
             >
                 ดึงข้อมูล
@@ -253,12 +253,12 @@ const SaleOrderReport = () => {
             <Button
                 type="primary"
                 onClick={handleCopyData}
-                disabled={SaleOrderData.length === 0}
+                disabled={setEndData.length === 0}
             >
                 Copy
             </Button>
             <Table
-                dataSource={SaleOrderData}
+                dataSource={setEndData}
                 columns={columns}
                 size='small'
                 loading={loading}
@@ -268,4 +268,4 @@ const SaleOrderReport = () => {
     );
 };
 
-export default SaleOrderReport;
+export default SetEndReport;

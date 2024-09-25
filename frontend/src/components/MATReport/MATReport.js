@@ -54,11 +54,11 @@ const MATReport = () => {
         }
 
         // แปลงข้อมูลในตารางเป็นรูปแบบ TSV (Tab-separated values)
-        const headers = ['matid', 'matcategoryid', 'mat', 'matunitid', 'matunitrefid', 'matunituserid'];
+        const headers = ['matunitid', 'matid', 'matcategoryid', 'matunitrefid', 'matunituserid', 'mat'];
         const tsvData = [
             headers.join('\t'), // หัวตาราง
             ...MATData.map(row => 
-                `${row.matid}\t${row.matcategoryid}\t${row.mat}\t${row.matunitid}\t${row.matunitrefid}\t${row.matunituserid}`
+                `${row.matunitid}\t${row.matid}\t${row.matcategoryid}\t${row.matunitrefid}\t${row.matunituserid}\t${row.mat}`
             )
         ].join('\n'); // แต่ละ record แยกด้วย '\n' และคอลัมน์แยกด้วย '\t'
 
@@ -75,6 +75,11 @@ const MATReport = () => {
 
     const columns = [
         {
+            title: 'matunitid',
+            dataIndex: 'matunitid',
+            key: 'matunitid',
+        },
+        {
             title: 'matid',
             dataIndex: 'matid',
             key: 'matid',
@@ -85,16 +90,6 @@ const MATReport = () => {
             key: 'matcategoryid',
         },
         {
-            title: 'mat',
-            dataIndex: 'mat',
-            key: 'mat',
-        },
-        {
-            title: 'matunitid',
-            dataIndex: 'matunitid',
-            key: 'matunitid',
-        },
-        {
             title: 'matunitrefid',
             dataIndex: 'matunitrefid',
             key: 'matunitrefid',
@@ -103,6 +98,11 @@ const MATReport = () => {
             title: 'matunituserid',
             dataIndex: 'matunituserid',
             key: 'matunituserid',
+        },
+        {
+            title: 'mat',
+            dataIndex: 'mat',
+            key: 'mat',
         },
     ];
 
@@ -129,10 +129,11 @@ const MATReport = () => {
             <Table
                 dataSource={MATData}
                 columns={columns}
-                size='middle'
+                size='small'
                 loading={loading}
                 // rowKey="matid"
                 pagination={{ pageSize: 100 }}
+                Bordered={true}
             />
         </div>
     );

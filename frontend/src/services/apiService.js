@@ -13,11 +13,11 @@ const apiService = {
             throw error;
         }
     },
-    fetchCN: async (data) => { // MM-DD-YYYY
+    fetchCN: async (startDate, endDate) => {
         try {
           console.log("---------------api.fetchCN-----------------");
-          console.log("req.data =", data, typeof(data));
-          const response = await axios.post(`${API_BASE_URL}/api/creditnote`, { ...{data} });
+          console.log("req.startDate =", startDate, typeof(startDate), "\n", "req.endDate =", endDate, typeof(endDate));
+          const response = await axios.post(`${API_BASE_URL}/api/creditnote`, { startDate , endDate } );
           console.log("res in api :", response);
           return response;
         } catch (error) {
@@ -28,18 +28,29 @@ const apiService = {
         try {
           console.log("---------------api.fetchSaleOeder-----------------");
           console.log("req.startDate =", startDate, typeof(startDate), "\n", "req.endDate =", endDate, typeof(endDate));
-          const response = await axios.post(`${API_BASE_URL}/api/saleorder`,{ startDate , endDate } );
+          const response = await axios.post(`${API_BASE_URL}/api/saleorder`, { startDate , endDate } );
           console.log("res in api :", response);
           return response;
         } catch (error) {
             throw error;
         }
     },
-    fetchSetEnd: async (data) => {
+    fetchSetEnd: async (startDate, endDate) => {
         try {
           console.log("---------------api.fetchSetEnd-----------------");
-          console.log("req.data =", data, typeof(data));
-          const response = await axios.post(`${API_BASE_URL}/api/setend`, { ...{data} });
+          console.log("req.startDate =", startDate, typeof(startDate), "\n", "req.endDate =", endDate, typeof(endDate));
+          const response = await axios.post(`${API_BASE_URL}/api/setend`, { startDate , endDate } );
+          console.log("res in api :", response);
+          return response;
+        } catch (error) {
+            throw error;
+        }
+    },
+    fetchDateConfirm: async (startDate, endDate) => {
+        try {
+          console.log("---------------api.dateConfirm-----------------");
+          console.log("req.startDate =", startDate, typeof(startDate), "\n", "req.endDate =", endDate, typeof(endDate));
+          const response = await axios.post(`${API_BASE_URL}/api/dateConfirm`, { startDate , endDate } );
           console.log("res in api :", response);
           return response;
         } catch (error) {

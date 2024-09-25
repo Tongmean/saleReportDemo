@@ -1,8 +1,12 @@
 
 import { useState } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
+
 import MATReport from '../../components/MATReport/MATReport';
 import SaleOrderReport from '../../components/SaleOrderReport/SaleOrderReport';
+import SetEndReport from '../../components/SetEndReport/SetEndReport';
+import CNReport from '../../components/CNReport/CNReport';
+import DateConfirmReport from '../../components/DateConfirmReport/DateConfirmReport';
 import './Homepage.css';
 
 const Home = () => {
@@ -13,13 +17,13 @@ const Home = () => {
             case 'SaleOrder':
                 return <SaleOrderReport/>;
             case 'SetEnt':
-                return <h2>Set Ent Report</h2>;
+                return <SetEndReport/>;
             case 'CN':
-                return <h2>CN Report</h2>;
+                return <CNReport/>;
             case 'MAT':
                 return <MATReport />;
-            case 'DateConfrim':
-                return <h2>DateConfrim Report</h2>;
+            case 'DateConfirm':
+                return <DateConfirmReport/>;
             default:
                 return <SaleOrderReport/>;
         }

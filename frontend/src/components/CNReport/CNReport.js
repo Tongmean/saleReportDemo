@@ -1,13 +1,13 @@
 import { React, useState, useEffect } from 'react';
 import { Button, message, Table, DatePicker } from 'antd';
 import apiService from '../../services/apiService';
-import './SaleOrderReport.css';
+import './CNReport.css';
 import moment from 'moment';
 
 const { RangePicker } = DatePicker;
 
-const SaleOrderReport = () => {
-    const [SaleOrderData, setSaleOrderData] = useState([]);
+const CNReport = () => {
+    const [CNData, setCNData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [countByServer, setCountByServer] = useState(0);
     const [countByClient, setCountByClient] = useState(0);
@@ -17,7 +17,7 @@ const SaleOrderReport = () => {
         console.log("Selected dates: ", dates);
     }, [dates]);
 
-    const handleFetchSaleOrder = async () => {
+    const handleFetchCN = async () => {
         console.log("Fetching data with selected dates");
         setLoading(true);
 
@@ -35,7 +35,7 @@ const SaleOrderReport = () => {
         console.log(`Request startDate: ${startDate}, endDate: ${endDate}`);
 
         try {
-            const response = await apiService.fetchSaleOrder(startDate, endDate);
+            const response = await apiService.fetchCN(startDate, endDate);
             if (response) {
                 console.log("Data fetched successfully: ", response.data.data);
                 const countlength = response.data.countlength || 0;
@@ -50,7 +50,7 @@ const SaleOrderReport = () => {
                     console.log("Warning: The number of records does not match the countlength!");
                 }
 
-                setSaleOrderData(response.data.data);
+                setCNData(response.data.data);
                 setCountByServer(countlength);
                 setCountByClient(dataLength);
             }
@@ -68,39 +68,40 @@ const SaleOrderReport = () => {
     };
 
     const handleCopyData = () => {
-        if (SaleOrderData.length === 0) {
+        if (CNData.length === 0) {
             message.warning("ไม่มีข้อมูลให้คัดลอก");
             return;
         }
     
         // Define headers matching the current table columns
         const headers = [
-            'datedoc',
-            'salesorderuserid',
-            'sourceid',
+            'salescreditnoteid',
+            'st_processed',
+            'salescreditnoteuserid_processed',
+            'sourcerefid_docuserid',
             'customerid',
+            'refid',
             'personnelid_sales',
             'itemnumber',
-            'matunitid',
+            'sourcerefid',
+            'sourcerefid_matunitid',
             'quantity',
             'unitsize',
             'agquantity',
             'unitprice',
-            'unitdiscount',
-            'discount',
-            'netamount',
-            'quantityended',
-            'st_ended'
+            'amount',
+            'amountwithtax',
+            'st_processedcanceled'
         ];
 
         // Helper function to format the value as text or number
         const formatValue = (column, value) => {
             // Columns that should be locked as text (added single quotes around them for TSV format)
-            const textColumns = ['customerid', 'matunitid', 'personnelid_sales', 'quantityended', 'salesorderuserid', 'sourceid', 'st_ended'];
-            
+            const textColumns = ['salescreditnoteid', 'customerid', 'salescreditnoteuserid_processed', 'sourcerefid_docuserid', 'st_processed', 'st_processedcanceled'];
+
             // Columns that should be treated as numbers
-            const numberColumns = ['agquantity', 'discount', 'itemnumber', 'netamount', 'quantity', 'unitdiscount', 'unitprice', 'unitsize'];
-            
+            const numberColumns = ['quantity', 'unitsize', 'agquantity', 'unitprice', 'amount', 'amountwithtax'];
+
             if (textColumns.includes(column)) {
                 return `"${value}"`; // Treat as text, surround with double quotes for text-lock in Excel
             } else if (numberColumns.includes(column)) {
@@ -109,27 +110,28 @@ const SaleOrderReport = () => {
             return value; // Default case
         };
 
-        // Transform the SaleOrderData into TSV format with specific column formatting
+        // Transform the CNData into TSV format with specific column formatting
         const tsvData = [
             headers.join('\t'), // Join headers with tabs
-            ...SaleOrderData.map(row => 
+            ...CNData.map(row => 
                 [
-                    moment(row.datedoc).format('DD-MM-YYYY HH:mm'), // 'datedoc'
-                    formatValue('salesorderuserid', row.salesorderuserid), // 'salesorderuserid'
-                    formatValue('sourceid', row.sourceid), // 'sourceid'
-                    formatValue('customerid', row.customerid), // 'customerid'
-                    formatValue('personnelid_sales', row.personnelid_sales), // 'personnelid_sales'
-                    formatValue('itemnumber', row.itemnumber), // 'itemnumber'
-                    formatValue('matunitid', row.matunitid), // 'matunitid'
-                    formatValue('quantity', row.quantity), // 'quantity'
-                    formatValue('unitsize', row.unitsize), // 'unitsize'
-                    formatValue('agquantity', row.agquantity), // 'agquantity'
-                    formatValue('unitprice', row.unitprice), // 'unitprice'
-                    formatValue('unitdiscount', row.unitdiscount), // 'unitdiscount'
-                    formatValue('discount', row.discount), // 'discount'
-                    formatValue('netamount', row.netamount), // 'netamount'
-                    formatValue('quantityended', row.quantityended), // 'quantityended'
-                    formatValue('st_ended', row.st_ended) // 'st_ended'
+                    formatValue('salescreditnoteid', row.salescreditnoteid),
+                    formatValue('st_processed', row.st_processed),
+                    formatValue('salescreditnoteuserid_processed', row.salescreditnoteuserid_processed),
+                    formatValue('sourcerefid_docuserid', row.sourcerefid_docuserid),
+                    formatValue('customerid', row.customerid),
+                    formatValue('refid', row.refid),
+                    formatValue('personnelid_sales', row.personnelid_sales),
+                    formatValue('itemnumber', row.itemnumber),
+                    formatValue('sourcerefid', row.sourcerefid),
+                    formatValue('sourcerefid_matunitid', row.sourcerefid_matunitid),
+                    formatValue('quantity', row.quantity),
+                    formatValue('unitsize', row.unitsize),
+                    formatValue('agquantity', row.agquantity),
+                    formatValue('unitprice', row.unitprice),
+                    formatValue('amount', row.amount),
+                    formatValue('amountwithtax', row.amountwithtax),
+                    formatValue('st_processedcanceled', row.st_processedcanceled)
                 ].join('\t') // Join row values with tabs
             )
         ].join('\n'); // Join each row with newlines
@@ -147,25 +149,34 @@ const SaleOrderReport = () => {
 
     const columns = [
         {
-            title: 'datedoc',
-            dataIndex: 'datedoc',
-            key: 'datedoc',
-            render: (text) => moment(text).format('DD-MM-YYYY HH:mm'),
+            title: 'salescreditnoteid',
+            dataIndex: 'salescreditnoteid',
+            key: 'salescreditnoteid',
         },
         {
-            title: 'salesorderuserid',
-            dataIndex: 'salesorderuserid',
-            key: 'salesorderuserid',
+            title: 'st_processed',
+            dataIndex: 'st_processed',
+            key: 'st_processed',
         },
         {
-            title: 'sourceid',
-            dataIndex: 'sourceid',
-            key: 'sourceid',
+            title: 'salescreditnoteuserid_processed',
+            dataIndex: 'salescreditnoteuserid_processed',
+            key: 'salescreditnoteuserid_processed',
+        },
+        {
+            title: 'sourcerefid_docuserid',
+            dataIndex: 'sourcerefid_docuserid',
+            key: 'sourcerefid_docuserid',
         },
         {
             title: 'customerid',
             dataIndex: 'customerid',
             key: 'customerid',
+        },
+        {
+            title: 'refid',
+            dataIndex: 'refid',
+            key: 'refid',
         },
         {
             title: 'personnelid_sales',
@@ -178,9 +189,14 @@ const SaleOrderReport = () => {
             key: 'itemnumber',
         },
         {
-            title: 'matunitid',
-            dataIndex: 'matunitid',
-            key: 'matunitid',
+            title: 'sourcerefid',
+            dataIndex: 'sourcerefid',
+            key: 'sourcerefid',
+        },
+        {
+            title: 'sourcerefid_matunitid',
+            dataIndex: 'sourcerefid_matunitid',
+            key: 'sourcerefid_matunitid',
         },
         {
             title: 'quantity',
@@ -203,36 +219,26 @@ const SaleOrderReport = () => {
             key: 'unitprice',
         },
         {
-            title: 'unitdiscount',
-            dataIndex: 'unitdiscount',
-            key: 'unitdiscount',
+            title: 'amount',
+            dataIndex: 'amount',
+            key: 'amount',
         },
         {
-            title: 'discount',
-            dataIndex: 'discount',
-            key: 'discount',
+            title: 'amountwithtax',
+            dataIndex: 'amountwithtax',
+            key: 'amountwithtax',
         },
         {
-            title: 'netamount',
-            dataIndex: 'netamount',
-            key: 'netamount',
-        },
-        {
-            title: 'quantityended',
-            dataIndex: 'quantityended',
-            key: 'quantityended',
-        },
-        {
-            title: 'st_ended',
-            dataIndex: 'st_ended',
-            key: 'st_ended',
+            title: 'st_processedcanceled',
+            dataIndex: 'st_processedcanceled',
+            key: 'st_processedcanceled',
         },
     ];
     
 
     return (
-        <div className='SaleOrder-report'>
-            <h2>Sale Order Report</h2>
+        <div className='CN-report'>
+            <h2>Cradit Note Report</h2>
             <div>
                 <span> จำนวนจาก database : {countByClient} </span>
                 <span> จำนวนที่ได้รับ : {countByServer} </span>
@@ -245,7 +251,7 @@ const SaleOrderReport = () => {
             </div>
             <Button
                 type="primary"
-                onClick={handleFetchSaleOrder}
+                onClick={handleFetchCN}
                 disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
             >
                 ดึงข้อมูล
@@ -253,12 +259,12 @@ const SaleOrderReport = () => {
             <Button
                 type="primary"
                 onClick={handleCopyData}
-                disabled={SaleOrderData.length === 0}
+                disabled={CNData.length === 0}
             >
                 Copy
             </Button>
             <Table
-                dataSource={SaleOrderData}
+                dataSource={CNData}
                 columns={columns}
                 size='small'
                 loading={loading}
@@ -268,4 +274,4 @@ const SaleOrderReport = () => {
     );
 };
 
-export default SaleOrderReport;
+export default CNReport;
