@@ -18,6 +18,9 @@ const checkDBConnection = require('./middleware/checkDBConnnection')
 app.use(cors())
 app.use(express.json()); // Upcoming req to Json
 app.use(bodyParser.json());
+
+app.use('/api/verifypin', verifyRouter);
+
 app.use(checkDBConnection);
 
 app.use('/api/matid', matidRouter);
@@ -28,7 +31,6 @@ app.use('/api/setend', setEndRouter);
 
 app.use('/api/creditnote', creditNoteRouter);
 
-app.use('/api/verifypin', verifyRouter);
 
 app.use('/api/dateconfirm', dateConfirmRouter);
 
