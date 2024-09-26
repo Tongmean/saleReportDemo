@@ -11,8 +11,8 @@ const NavBar = ({ onSectionChange, selectedSection }) => {
                 Sale Order
             </div>
             <div
-                className={`nav-item ${selectedSection === 'SetEnt' ? 'active' : ''}`}
-                onClick={() => onSectionChange('SetEnt')}
+                className={`nav-item ${selectedSection === 'SetEnd' ? 'active' : ''}`}
+                onClick={() => onSectionChange('SetEnd')}
             >
                 Set Ent
             </div>

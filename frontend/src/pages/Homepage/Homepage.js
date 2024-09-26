@@ -14,7 +14,7 @@ const Home = () => {
         switch (section) {
             case 'SaleOrder':
                 return <SaleOrderReport />;
-            case 'SetEnt':
+            case 'SetEnd':
                 return <SetEndReport />;
             case 'CN':
                 return <CNReport />;

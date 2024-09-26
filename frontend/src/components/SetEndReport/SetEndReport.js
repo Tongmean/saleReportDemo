@@ -134,15 +134,28 @@ const SetEndReport = () => {
             )
         ].join('\n'); // Join each row with newlines
 
-        // Copy data to clipboard
-        navigator.clipboard.writeText(tsvData)
-            .then(() => {
-                message.success("คัดลอกข้อมูลสำเร็จ! คุณสามารถวางใน Excel ด้วย Ctrl+V");
-            })
-            .catch(err => {
-                message.error("การคัดลอกข้อมูลล้มเหลว โปรดลองใหม่อีกครั้ง");
-                console.error("Error copying data: ", err);
-            });
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            message.success("คัดลอกข้อมูลสำเร็จ! คุณสามารถวางใน Excel ด้วย Ctrl+V");
+        }
+        
+        // Usage
+        copyToClipboard(tsvData);
+        
+        // // Copy data to clipboard
+        // navigator.clipboard.writeText(tsvData)
+        //     .then(() => {
+        //         message.success("คัดลอกข้อมูลสำเร็จ! คุณสามารถวางใน Excel ด้วย Ctrl+V");
+        //     })
+        //     .catch(err => {
+        //         message.error("การคัดลอกข้อมูลล้มเหลว โปรดลองใหม่อีกครั้ง");
+        //         console.error("Error copying data: ", err);
+        //     });
     };
 
     const columns = [
