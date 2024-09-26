@@ -101,7 +101,7 @@ const DateConfirmReport = () => {
                 [
                     formatValue('salesorderuserid', row.salesorderuserid),
                     // formatValue('st_confirmed', row.st_confirmed),
-                    moment(row.st_confirmed).format('DD-MM-YYYY HH:mm'),
+                    moment(row.st_confirmed).format('DD/MM/YYYY'),
                     formatValue('entityuserid', row.entityuserid),
                     formatValue('entity_firstname', row.entity_firstname)
                 ].join('\t') // Join row values with tabs
@@ -129,7 +129,7 @@ const DateConfirmReport = () => {
             title: 'st_confirmed',
             dataIndex: 'st_confirmed',
             key: 'st_confirmed',
-            render: (text) => moment(text).format('DD-MM-YYYY HH:mm'),
+            render: (text) => moment(text).format('DD/MM/YYYY'),
         },
         {
             title: 'entityuserid',
@@ -141,7 +141,7 @@ const DateConfirmReport = () => {
             dataIndex: 'entity_firstname',
             key: 'entity_firstname',
         }
-    ];  //  render: (text) => moment(text).format('DD-MM-YYYY HH:mm'),
+    ];
     
 
     return (

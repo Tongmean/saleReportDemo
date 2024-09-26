@@ -69,6 +69,18 @@ const apiService = {
             throw error;
         }
     },
+    fetchLastDateSaleOrder: async () => {
+        try {
+          console.log("---------------api.fetchLastDateSaleOrder-----------------");
+          const response = await axios.get(`${API_BASE_URL}/api/lastDateSaleOrder`);
+          console.log("res in api :", response);
+          return response;
+        } catch (error) {
+            console.log("log error in API :", error);
+            throw error;
+        }
+    },
+
 };
 
 export default apiService;

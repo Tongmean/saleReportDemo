@@ -117,7 +117,7 @@ const CNReport = () => {
                 [
                     formatValue('salescreditnoteid', row.salescreditnoteid),
                     // formatValue('st_processed', row.st_processed),
-                    moment(row.st_processed).format('DD-MM-YYYY HH:mm'),
+                    moment(row.st_processed).format('DD/MM/YYYY'),
                     formatValue('salescreditnoteuserid_processed', row.salescreditnoteuserid_processed),
                     formatValue('sourcerefid_docuserid', row.sourcerefid_docuserid),
                     formatValue('customerid', row.customerid),
@@ -158,7 +158,7 @@ const CNReport = () => {
             title: 'st_processed',
             dataIndex: 'st_processed',
             key: 'st_processed',
-            render: (text) => moment(text).format('DD-MM-YYYY HH:mm'),
+            render: (text) => moment(text).format('DD/MM/YYYY'),
         },
         {
             title: 'salescreditnoteuserid_processed',
