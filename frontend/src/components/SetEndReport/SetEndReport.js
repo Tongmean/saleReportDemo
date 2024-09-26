@@ -114,7 +114,7 @@ const SetEndReport = () => {
             headers.join('\t'), // Join headers with tabs
             ...setEndData.map(row => 
                 [
-                    moment(row.datedoc).format('DD-MM-YYYY HH:mm'), // 'datedoc'
+                    moment(row.datedoc).format('DD/MM/YYYY'), // 'datedoc'
                     formatValue('salesorderuserid', row.salesorderuserid), // 'salesorderuserid'
                     formatValue('sourceid', row.sourceid), // 'sourceid'
                     formatValue('customerid', row.customerid), // 'customerid'
@@ -150,7 +150,7 @@ const SetEndReport = () => {
             title: 'datedoc',
             dataIndex: 'datedoc',
             key: 'datedoc',
-            render: (text) => moment(text).format('DD-MM-YYYY HH:mm'),
+            render: (text) => moment(text).format('DD/MM/YYYY'),
         },
         {
             title: 'salesorderuserid',
@@ -226,7 +226,7 @@ const SetEndReport = () => {
             title: 'st_ended',
             dataIndex: 'st_ended',
             key: 'st_ended',
-            render: (text) => moment(text).format('DD-MM-YYYY HH:mm'),
+            render: (text) => moment(text).format('DD/MM/YYYY'),
         },
     ];
     

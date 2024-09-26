@@ -11,11 +11,37 @@ const SaleOrderReport = () => {
     const [loading, setLoading] = useState(false);
     const [countByServer, setCountByServer] = useState(0);
     const [countByClient, setCountByClient] = useState(0);
+    const [lastDateSaleOrder, setLastDateSaleOrder] = useState('-');
     const [dates, setDates] = useState([null, null]);
 
     useEffect(() => {
         console.log("Selected dates: ", dates);
     }, [dates]);
+    
+    useEffect(() => {
+        console.log("lastDateSaleOrder: ", lastDateSaleOrder, typeof(lastDateSaleOrder));
+    }, [lastDateSaleOrder]);
+
+    const fetchLastDateSaleOrder = async () => {
+        try {
+            const response = await apiService.fetchLastDateSaleOrder();
+            // const response = new Date();
+            if (response) {
+                console.log("res to client :", response);
+                const resFormat = moment(response.data).format('DD/MM/YYYY');
+                // const resFormat = moment(response).format('DD/MM/YYYY');
+                console.log("resFormat : ", resFormat);
+                setLastDateSaleOrder(resFormat);
+            }
+        } catch (error) {
+            message.error("ดึงวันที่ข้อมูลล่าสุดล้มเหลว");
+        }
+    };
+
+    useEffect(() => {
+        fetchLastDateSaleOrder()
+        console.log("Selected dates: ", dates);
+    }, []);
 
     const handleFetchSaleOrder = async () => {
         console.log("Fetching data with selected dates");
@@ -114,7 +140,7 @@ const SaleOrderReport = () => {
             headers.join('\t'), // Join headers with tabs
             ...SaleOrderData.map(row => 
                 [
-                    moment(row.datedoc).format('DD-MM-YYYY HH:mm'), // 'datedoc'
+                    moment(row.datedoc).format('DD/MM/YYYY'), // 'datedoc'
                     formatValue('salesorderuserid', row.salesorderuserid), // 'salesorderuserid'
                     formatValue('sourceid', row.sourceid), // 'sourceid'
                     formatValue('customerid', row.customerid), // 'customerid'
@@ -150,7 +176,8 @@ const SaleOrderReport = () => {
             title: 'datedoc',
             dataIndex: 'datedoc',
             key: 'datedoc',
-            render: (text) => moment(text).format('DD-MM-YYYY HH:mm'),
+            render: (text) => moment(text).format('DD/MM/YYYY'),
+            // render: (text) => moment(text).format('DD-MM-YYYY HH:mm'),
         },
         {
             title: 'salesorderuserid',
@@ -234,6 +261,7 @@ const SaleOrderReport = () => {
         <div className='SaleOrder-report'>
             <h2 className='header-report'>Sale Order Report</h2>
             <div className='compare-length'>
+                <span>วันที่ล่าสุดของข้อมูล : {lastDateSaleOrder}</span>
                 <span> จำนวนจาก database : {countByClient} </span>
                 <span> จำนวนที่ได้รับ : {countByServer} </span>
             </div>
