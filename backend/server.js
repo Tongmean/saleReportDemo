@@ -12,10 +12,13 @@ const setEndRouter = require('./route/setEndRoute')
 const creditNoteRouter = require('./route/creditNoteRoute')
 const verifyRouter = require('./route/verifyRoute')
 const dateConfirmRouter = require('./route/dateConfirmRoute')
+//import check connection
+const checkDBConnection = require('./middleware/checkDBConnnection')
 //Middleware
 app.use(cors())
 app.use(express.json()); // Upcoming req to Json
 app.use(bodyParser.json());
+app.use(checkDBConnection);
 
 app.use('/api/matid', matidRouter);
 

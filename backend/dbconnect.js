@@ -8,7 +8,8 @@ const dbconnect = new Pool({
   host: process.env.host,
   database: process.env.database,
   password: process.env.password,
-
+  connectionTimeoutMillis: 5000,  // Wait up to 5 seconds for a connection
+  idleTimeoutMillis: 10000        // Close idle connections after 10 seconds
 
 });
 // Connect to the database
