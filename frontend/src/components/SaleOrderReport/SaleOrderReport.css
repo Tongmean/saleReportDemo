@@ -1,3 +1,23 @@
 .SaleOrder-report {
     
 }
+
+.show-lastestDate-SaleOrder {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 10px;
+}
+
+.show-lastestDate-SaleOrder span {
+    font-size: large;
+    font-weight: bold;
+    margin: 0px 10px 0px;
+    color: #424242;
+}
+
+.lasetest-date {
+    color: #ff0000 !important;
+  }

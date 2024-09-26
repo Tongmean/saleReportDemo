@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Input, Button, message } from 'antd';
 import apiService from '../../services/apiService';
-import './VerifyPinProvider.css'
+import './VerifyPinProvider.css';
 
 const VerifyPinProvider = ({ onVerified }) => {
   const [pin, setPin] = useState('');
@@ -23,10 +23,10 @@ const VerifyPinProvider = ({ onVerified }) => {
         onVerified(); // เรียก callback เมื่อ PIN ถูกต้อง
       }
     } catch (error) {
-        if (error.status == 401) {
+        if (error.status === 401) {
             message.error('PIN ไม่ถูกต้อง กรุณาลองอีกครั้ง');
             setPin(''); // รีเซ็ตฟอร์ม PIN
-        } else if (error.status == 500) {
+        } else if (error.status === 500) {
             message.error('เซิร์ฟเวอร์ล้มเหลว กรุณาติดต่อผู้ดูแลระบบ');
             setPin(''); // รีเซ็ตฟอร์ม PIN
         }
@@ -44,6 +44,13 @@ const VerifyPinProvider = ({ onVerified }) => {
     }
   };
 
+  // ฟังก์ชันที่ตรวจจับการกดปุ่ม Enter
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handlePinSubmit(); // เรียกฟังก์ชันเมื่อกด Enter
+    }
+  };
+
   return (
     <div className='VerifyPinProvider'>
       <div className='welcome-login'>
@@ -57,6 +64,7 @@ const VerifyPinProvider = ({ onVerified }) => {
           value={pin}
           maxLength={4}
           onChange={handlePinChange}
+          onKeyPress={handleKeyPress} // เพิ่มการตรวจจับการกดปุ่ม Enter
           placeholder="PIN 4 หลัก"
           disabled={loading}
           style={{ width: '200px', marginBottom: '10px' }}
@@ -64,7 +72,7 @@ const VerifyPinProvider = ({ onVerified }) => {
         <Button type="primary" onClick={handlePinSubmit} loading={loading}>
           ยืนยัน
         </Button>
-    </div>
+      </div>
     </div>
   );
 };
