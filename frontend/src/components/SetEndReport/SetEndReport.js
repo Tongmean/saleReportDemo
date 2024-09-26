@@ -238,11 +238,12 @@ const SetEndReport = () => {
                 <span> จำนวนจาก database : {countByClient} </span>
                 <span> จำนวนที่ได้รับ : {countByServer} </span>
             </div>
-            <div>
+            <div className='datePicker'>
                 <RangePicker 
                     format="MM-DD-YYYY" 
                     onChange={(values) => setDates(values || [null, null])} // Safely set dates or default to [null, null]
                 />
+                <p>วันที่สุดท้ายที่ใส่เข้าไป คือ วันที่สุดท้าย + 1 วัน <br></br> (เช่น เมื่อต้องการข้อมูลจากวันที่ 5/9/2024 ถึง 10/9/2024 เลือก start date = 5/9/2024 , end Date = 11/9/2024)</p>
             </div>
             <div className='button-part'>
                 <Button

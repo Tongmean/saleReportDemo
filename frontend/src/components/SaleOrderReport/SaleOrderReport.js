@@ -278,16 +278,19 @@ const SaleOrderReport = () => {
     return (
         <div className='SaleOrder-report'>
             <h2 className='header-report'>Sale Order Report</h2>
+            <div className='show-lastestDate-SaleOrder'>
+                <span>วันที่ล่าสุดของข้อมูล : <span className='lasetest-date'>{lastDateSaleOrder}</span></span>
+            </div>
             <div className='compare-length'>
-                <span>วันที่ล่าสุดของข้อมูล : {lastDateSaleOrder}</span>
                 <span> จำนวนจาก database : {countByClient} </span>
                 <span> จำนวนที่ได้รับ : {countByServer} </span>
             </div>
-            <div>
+            <div className='datePicker'>
                 <RangePicker 
                     format="MM-DD-YYYY" 
                     onChange={(values) => setDates(values || [null, null])} // Safely set dates or default to [null, null]
                 />
+                <p>วันที่สุดท้ายที่ใส่เข้าไป คือ วันที่สุดท้าย + 1 วัน <br></br> (เช่น เมื่อต้องการข้อมูลจากวันที่ 5/9/2024 ถึง 10/9/2024 เลือก start date = 5/9/2024 , end Date = 11/9/2024)</p>
             </div>
             <div className='button-part'>
                 <Button
