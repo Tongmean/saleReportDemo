@@ -57,6 +57,24 @@
   width: 100%;
 }
 
+/* เพิ่มเส้นขอบให้ทุก cell ในตาราง */
+.ant-table {
+  border-collapse: collapse; /* ทำให้เส้นขอบไม่ซ้ำซ้อนกัน */
+}
+
+.ant-table td, .ant-table th {
+  border: 1px solid #ccc; /* สีเส้นขอบ */
+}
+
+.ant-table tr {
+  border-bottom: 1px solid #ccc; /* เส้นขอบด้านล่างแต่ละแถว */
+}
+
+/* ถ้าต้องการเพิ่มเส้นขอบให้หัวตารางอย่างเดียว */
+.ant-table thead > tr > th {
+  border-bottom: 2px solid #333; /* เส้นขอบที่หนาขึ้นสำหรับหัวตาราง */
+}
+
 /*!------------------------------------public style---------------------------------------------*/
 
 .header-report {

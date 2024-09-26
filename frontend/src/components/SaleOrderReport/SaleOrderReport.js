@@ -122,10 +122,27 @@ const SaleOrderReport = () => {
         // Helper function to format the value as text or number
         const formatValue = (column, value) => {
             // Columns that should be locked as text (added single quotes around them for TSV format)
-            const textColumns = ['customerid', 'matunitid', 'personnelid_sales', 'quantityended', 'salesorderuserid', 'sourceid', 'st_ended'];
+            const textColumns = [
+                'customerid', 
+                'matunitid', 
+                'personnelid_sales', 
+                'quantityended', 
+                'salesorderuserid', 
+                'sourceid', 
+                'st_ended'
+            ];
             
             // Columns that should be treated as numbers
-            const numberColumns = ['agquantity', 'discount', 'itemnumber', 'netamount', 'quantity', 'unitdiscount', 'unitprice', 'unitsize'];
+            const numberColumns = [
+                'agquantity', 
+                'discount', 
+                'itemnumber', 
+                'netamount', 
+                'quantity', 
+                'unitdiscount', 
+                'unitprice', 
+                'unitsize'
+            ];
             
             if (textColumns.includes(column)) {
                 return `"${value}"`; // Treat as text, surround with double quotes for text-lock in Excel
@@ -155,7 +172,7 @@ const SaleOrderReport = () => {
                     formatValue('discount', row.discount), // 'discount'
                     formatValue('netamount', row.netamount), // 'netamount'
                     formatValue('quantityended', row.quantityended), // 'quantityended'
-                    formatValue('st_ended', row.st_ended) // 'st_ended'
+                    row.st_ended && moment(row.st_ended).isValid() ? moment(row.st_ended).format('DD/MM/YYYY') : row.st_ended, // 'st_ended'
                 ].join('\t') // Join row values with tabs
             )
         ].join('\n'); // Join each row with newlines
@@ -253,6 +270,7 @@ const SaleOrderReport = () => {
             title: 'st_ended',
             dataIndex: 'st_ended',
             key: 'st_ended',
+            render: (text) => text ? moment(text).format('DD/MM/YYYY') : '',
         },
     ];
     
