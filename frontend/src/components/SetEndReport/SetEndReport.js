@@ -226,6 +226,7 @@ const SetEndReport = () => {
             title: 'st_ended',
             dataIndex: 'st_ended',
             key: 'st_ended',
+            render: (text) => moment(text).format('DD-MM-YYYY HH:mm'),
         },
     ];
     
