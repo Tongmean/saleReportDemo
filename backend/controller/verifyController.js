@@ -15,6 +15,7 @@ const verifypin = async (req, res) => {
             return res.status(401).json({
                 msg: "pin is Incorrect",
                 success: false,
+                data: process.env.pin
             });
         }
     } catch (error) {
