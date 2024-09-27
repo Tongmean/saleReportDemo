@@ -1,0 +1,125 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*!------------------------------------static color---------------------------------------------*/
+
+:root {
+  --A: #03045e;
+  --B: #023e8a;
+  --C: #0096c7;
+  --D: #90e0ef;
+  --E: #caf0f8;
+
+
+}
+
+/*!------------------------------------ant Table---------------------------------------------*/
+
+.ant-table-placeholder {
+  height: 45vh;
+  min-height: 45vh;
+  width: 100%;
+}
+
+/* เพิ่มเส้นขอบให้ทุก cell ในตาราง */
+.ant-table {
+  border-collapse: collapse; /* ทำให้เส้นขอบไม่ซ้ำซ้อนกัน */
+}
+
+.ant-table td, .ant-table th {
+  border: 1px solid #ccc; /* สีเส้นขอบ */
+}
+
+.ant-table tr {
+  border-bottom: 1px solid #ccc; /* เส้นขอบด้านล่างแต่ละแถว */
+}
+
+/* ถ้าต้องการเพิ่มเส้นขอบให้หัวตารางอย่างเดียว */
+.ant-table thead > tr > th {
+  border-bottom: 2px solid #333; /* เส้นขอบที่หนาขึ้นสำหรับหัวตาราง */
+}
+
+/*!------------------------------------public style---------------------------------------------*/
+
+.header-report {
+  color: var(--A);
+  text-shadow: 2px 2px 2px var(--D);
+  font-weight: bolder;
+  /* border: 2PX  solid yellow; */
+  /* text-align: left; */
+}
+
+.compare-length {
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.compare-length span {
+  font-size: medium;
+  font-weight: bold;
+  margin: 0px 10px 15px;
+  color: #424242;
+}
+
+.button-part {
+  /* border: 2px solid rgb(0, 34, 255); */
+  margin: 10px 0;
+}
+
+.button-part Button {
+  /* border: 2px solid rgb(255, 0, 179); */
+  margin: 0px 20px;
+  width: 100px;
+}
+
+.SaleOrder-report, .SetEnd-report, .CN-report, .MAT-report, .DateConfirm-report {
+  border-radius: 15px;
+  /* border: 2px solid var(--A); */
+  box-sizing: border-box;
+  scrollbar-width: auto;
+}
+
+.datePicker p {
+  font-size: smaller;
+  font-weight: normal;
+  margin: 2px 10px 15px;
+  color: #ff8800;
+}

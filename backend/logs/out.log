@@ -1,0 +1,96 @@
+Your server run on port 8080
+Your server run on port 8080
+Your server run on port 8080
+Your server run on port 8080
+Your server run on port 8080
+Your server run on port 8080
+Your server run on port 8080
+Your server run on port 8080
+Your server run on port 8080
+Your server run on port 8080
+Your server run on port 8080
+Your server run on port 8080
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
+Error acquiring client Error: Connection terminated due to connection timeout
+    at Connection.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\client.js:131:73)
+    at Object.onceWrapper (node:events:633:28)
+    at Connection.emit (node:events:519:28)
+    at Socket.<anonymous> (C:\Users\Administrator.CC230604\Desktop\New folder\Sale Report\backend\node_modules\pg\lib\connection.js:62:12)
+    at Socket.emit (node:events:519:28)
+    at TCP.<anonymous> (node:net:339:12)
