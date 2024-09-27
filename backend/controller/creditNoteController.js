@@ -21,7 +21,8 @@ const getCreditNote = async(req, res)=>{
                 arsalescreditnoteitem_tbl.amount, 
                 arsalescreditnoteitem_tbl.amountwithtax, 
                 arsalescreditnoteitem_tbl.sourcerefid_matunitid,
-                arsalescreditnoteitem_tbl.sourcerefid_docuserid
+                arsalescreditnoteitem_tbl.sourcerefid_docuserid,
+                arsalescreditnoteitem_tbl.note
             FROM 
                 public.arsalescreditnote_tbl 
             JOIN 
@@ -48,7 +49,8 @@ const getCreditNote = async(req, res)=>{
                 arsalescreditnoteitem_tbl.amount, 
                 arsalescreditnoteitem_tbl.amountwithtax, 
                 arsalescreditnoteitem_tbl.sourcerefid_matunitid,
-                arsalescreditnoteitem_tbl.sourcerefid_docuserid
+                arsalescreditnoteitem_tbl.sourcerefid_docuserid,
+                arsalescreditnoteitem_tbl.note
 
 
             `;
