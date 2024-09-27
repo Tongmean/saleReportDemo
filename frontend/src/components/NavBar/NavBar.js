@@ -14,7 +14,7 @@ const NavBar = ({ onSectionChange, selectedSection }) => {
                 className={`nav-item ${selectedSection === 'SetEnd' ? 'active' : ''}`}
                 onClick={() => onSectionChange('SetEnd')}
             >
-                Set Ent
+                Set End
             </div>
             <div
                 className={`nav-item ${selectedSection === 'CN' ? 'active' : ''}`}
