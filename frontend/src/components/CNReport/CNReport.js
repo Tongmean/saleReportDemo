@@ -59,8 +59,10 @@ const CNReport = () => {
                 message.error("ฐานข้อมูลล้มเหลว โปรติดต่อผู้ดูแลระบบ [Database error]");
             } else if (error.response && error.response.data.errorType === "server-connection") {
                 message.error("ระบบล้มเหลวโปรดติดต่อผู้ดูแลระบบ [Server error]");
+            } else if (error.response?.status === 500){
+                message.error("เซิร์ฟเวอร์ประมวลผลล้มเหลว โปรดติดต่อผู้ดูแลระบบ [Server error]");
             } else {
-                message.error("ระบบล้มเหลว [undefined error]");
+                message.error("พบข้อผิดพลาดที่ไม่คาดคิด โปรดติดต่อผู้ดูแลระบบ [undefined error]");
             }
         } finally {
             setLoading(false);
@@ -276,7 +278,7 @@ const CNReport = () => {
                 <Button
                     type="primary"
                     onClick={handleFetchCN}
-                    disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
+                    disabled={!dates[0] || !dates[1] || loading} // Disable if dates are not selected
                 >
                     ดึงข้อมูล
                 </Button>

@@ -3,14 +3,21 @@ import axios from 'axios';
 const API_BASE_URL = 'http://192.168.4.242:8000'; // local host server
 // const API_BASE_URL = 'http://127.0.0.1:8000'; // local host server
 
+const logErrInAPI = (error) => {
+    console.log(error)
+    console.log("error on API: ",error.response?.status || "non error code");
+    console.log("error on API: ", error.response?.message || "non error message");
+}
+
 const apiService = {
     fetchMAT: async () => {
         try {
-          console.log("---------------api.fetchMAT-----------------")
+          console.log("---------------api.fetchMAT-----------------");
           const response = await axios.get(`${API_BASE_URL}/api/matid`);
           console.log("res in api :", response);
           return response;
         } catch (error) {
+            logErrInAPI(error);
             throw error;
         }
     },
@@ -22,6 +29,7 @@ const apiService = {
           console.log("res in api :", response);
           return response;
         } catch (error) {
+            logErrInAPI(error);
             throw error;
         }
     },
@@ -33,6 +41,7 @@ const apiService = {
           console.log("res in api :", response);
           return response;
         } catch (error) {
+            logErrInAPI(error);
             throw error;
         }
     },
@@ -44,6 +53,7 @@ const apiService = {
           console.log("res in api :", response);
           return response;
         } catch (error) {
+            logErrInAPI(error);
             throw error;
         }
     },
@@ -55,6 +65,7 @@ const apiService = {
           console.log("res in api :", response);
           return response;
         } catch (error) {
+            logErrInAPI(error);
             throw error;
         }
     },
@@ -66,7 +77,8 @@ const apiService = {
           console.log("res in api :", response);
           return response;
         } catch (error) {
-            console.log("log error in API :", error);
+            // console.log("log error in API :", error);
+            logErrInAPI(error);
             throw error;
         }
     },
@@ -77,7 +89,8 @@ const apiService = {
           console.log("res in api :", response);
           return response;
         } catch (error) {
-            console.log("log error in API :", error);
+            // console.log("log error in API :", error);
+            logErrInAPI(error);
             throw error;
         }
     },
