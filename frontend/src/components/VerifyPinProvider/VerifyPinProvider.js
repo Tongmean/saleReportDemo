@@ -29,12 +29,9 @@ const VerifyPinProvider = ({ onVerified }) => {
         } else if (error.status === 500) {
             message.error('เซิร์ฟเวอร์ล้มเหลว กรุณาติดต่อผู้ดูแลระบบ');
             setPin(''); // รีเซ็ตฟอร์ม PIN
-<<<<<<< HEAD
-=======
         } else {
           message.error('ไม่สามารถติดต่อเซิร์ฟเวอร์ได้ กรุณาติดต่อผู้ดูแลระบบ');
           setPin(''); // รีเซ็ตฟอร์ม PIN
->>>>>>> master
         }
     } finally {
       setLoading(false);
