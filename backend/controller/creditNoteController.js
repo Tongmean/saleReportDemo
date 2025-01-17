@@ -54,7 +54,7 @@ const getCreditNote = async(req, res)=>{
 
 
         `;
-        
+
             await dbconnect.query(sqlcommand, [startDate, endDate], (err, result)=>{
                 if(err){
                     res.status(500).json({
