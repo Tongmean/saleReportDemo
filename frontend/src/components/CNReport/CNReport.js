@@ -59,8 +59,10 @@ const CNReport = () => {
                 message.error("ฐานข้อมูลล้มเหลว โปรติดต่อผู้ดูแลระบบ [Database error]");
             } else if (error.response && error.response.data.errorType === "server-connection") {
                 message.error("ระบบล้มเหลวโปรดติดต่อผู้ดูแลระบบ [Server error]");
+            } else if (error.response?.status === 500){
+                message.error("เซิร์ฟเวอร์ประมวลผลล้มเหลว โปรดติดต่อผู้ดูแลระบบ [Server error]");
             } else {
-                message.error("ระบบล้มเหลว [undefined error]");
+                message.error("พบข้อผิดพลาดที่ไม่คาดคิด โปรดติดต่อผู้ดูแลระบบ [undefined error]");
             }
         } finally {
             setLoading(false);
@@ -91,13 +93,14 @@ const CNReport = () => {
             'unitprice',
             'amount',
             'amountwithtax',
-            'st_processedcanceled'
+            'st_processedcanceled',
+            'note'
         ];
 
         // Helper function to format the value as text or number
         const formatValue = (column, value) => {
             // Columns that should be locked as text (added single quotes around them for TSV format)
-            const textColumns = ['salescreditnoteid', 'customerid', 'salescreditnoteuserid_processed', 'sourcerefid_docuserid', 'st_processed', 'st_processedcanceled'];
+            const textColumns = ['salescreditnoteid', 'customerid', 'salescreditnoteuserid_processed', 'sourcerefid_docuserid', 'st_processed', 'st_processedcanceled', 'note'];
 
             // Columns that should be treated as numbers
             const numberColumns = ['quantity', 'unitsize', 'agquantity', 'unitprice', 'amount', 'amountwithtax'];
@@ -117,7 +120,7 @@ const CNReport = () => {
                 [
                     formatValue('salescreditnoteid', row.salescreditnoteid),
                     // formatValue('st_processed', row.st_processed),
-                    moment(row.st_processed).format('DD/MM/YYYY'),
+                    moment.utc(row.st_processed).format('DD/MM/YYYY'),
                     formatValue('salescreditnoteuserid_processed', row.salescreditnoteuserid_processed),
                     formatValue('sourcerefid_docuserid', row.sourcerefid_docuserid),
                     formatValue('customerid', row.customerid),
@@ -132,7 +135,8 @@ const CNReport = () => {
                     formatValue('unitprice', row.unitprice),
                     formatValue('amount', row.amount),
                     formatValue('amountwithtax', row.amountwithtax),
-                    formatValue('st_processedcanceled', row.st_processedcanceled)
+                    formatValue('st_processedcanceled', row.st_processedcanceled),
+                    formatValue('note', row.note),
                 ].join('\t') // Join row values with tabs
             )
         ].join('\n'); // Join each row with newlines
@@ -171,7 +175,7 @@ const CNReport = () => {
             title: 'st_processed',
             dataIndex: 'st_processed',
             key: 'st_processed',
-            render: (text) => moment(text).format('DD/MM/YYYY'),
+            render: (text) => moment.utc(text).format('DD/MM/YYYY'),
         },
         {
             title: 'salescreditnoteuserid_processed',
@@ -248,6 +252,11 @@ const CNReport = () => {
             dataIndex: 'st_processedcanceled',
             key: 'st_processedcanceled',
         },
+        {
+            title: 'note',
+            dataIndex: 'note',
+            key: 'note',
+        },
     ];
     
 
@@ -269,7 +278,7 @@ const CNReport = () => {
                 <Button
                     type="primary"
                     onClick={handleFetchCN}
-                    disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
+                    disabled={!dates[0] || !dates[1] || loading} // Disable if dates are not selected
                 >
                     ดึงข้อมูล
                 </Button>

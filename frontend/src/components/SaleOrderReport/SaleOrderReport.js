@@ -26,13 +26,13 @@ const SaleOrderReport = () => {
         try {
             const response = await apiService.fetchLastDateSaleOrder();
             // const response = new Date();
-            if (response) {
-                console.log("res to client :", response);
-                const resFormat = moment(response.data).format('DD/MM/YYYY');
-                // const resFormat = moment(response).format('DD/MM/YYYY');
+            if (response) { //! edit
+                console.log("res to client :", response); 
+                const res = response.data.data; // รับข้อมูลวันที่
+                const resFormat = moment.utc(res).format('DD/MM/YYYY'); // แปลงเป็น moment แล้วใช้ format ที่ต้องการ
                 console.log("resFormat : ", resFormat);
-                setLastDateSaleOrder(resFormat);
-            }
+                setLastDateSaleOrder(resFormat); // ตั้งค่าวันที่ที่แปลงแล้ว
+            } //!edit
         } catch (error) {
             message.error("ดึงวันที่ข้อมูลล่าสุดล้มเหลว");
         }
@@ -85,8 +85,10 @@ const SaleOrderReport = () => {
                 message.error("ฐานข้อมูลล้มเหลว โปรติดต่อผู้ดูแลระบบ [Database error]");
             } else if (error.response && error.response.data.errorType === "server-connection") {
                 message.error("ระบบล้มเหลวโปรดติดต่อผู้ดูแลระบบ [Server error]");
+            } else if (error.response?.status === 500){
+                message.error("เซิร์ฟเวอร์ประมวลผลล้มเหลว โปรดติดต่อผู้ดูแลระบบ [Server error]");
             } else {
-                message.error("ระบบล้มเหลว [undefined error]");
+                message.error("พบข้อผิดพลาดที่ไม่คาดคิด โปรดติดต่อผู้ดูแลระบบ [undefined error]");
             }
         } finally {
             setLoading(false);
@@ -157,7 +159,7 @@ const SaleOrderReport = () => {
             headers.join('\t'), // Join headers with tabs
             ...SaleOrderData.map(row => 
                 [
-                    moment(row.datedoc).format('DD/MM/YYYY'), // 'datedoc'
+                    moment.utc(row.datedoc).format('DD/MM/YYYY'), // 'datedoc'
                     formatValue('salesorderuserid', row.salesorderuserid), // 'salesorderuserid'
                     formatValue('sourceid', row.sourceid), // 'sourceid'
                     formatValue('customerid', row.customerid), // 'customerid'
@@ -172,7 +174,7 @@ const SaleOrderReport = () => {
                     formatValue('discount', row.discount), // 'discount'
                     formatValue('netamount', row.netamount), // 'netamount'
                     formatValue('quantityended', row.quantityended), // 'quantityended'
-                    row.st_ended && moment(row.st_ended).isValid() ? moment(row.st_ended).format('DD/MM/YYYY') : row.st_ended, // 'st_ended'
+                    row.st_ended && moment.utc(row.st_ended).isValid() ? moment.utc(row.st_ended).format('DD/MM/YYYY') : row.st_ended, // 'st_ended'
                 ].join('\t') // Join row values with tabs
             )
         ].join('\n'); // Join each row with newlines
@@ -206,7 +208,7 @@ const SaleOrderReport = () => {
             title: 'datedoc',
             dataIndex: 'datedoc',
             key: 'datedoc',
-            render: (text) => moment(text).format('DD/MM/YYYY'),
+            render: (text) => moment.utc(text).format('DD/MM/YYYY'),
             // render: (text) => moment(text).format('DD-MM-YYYY HH:mm'),
         },
         {
@@ -283,7 +285,7 @@ const SaleOrderReport = () => {
             title: 'st_ended',
             dataIndex: 'st_ended',
             key: 'st_ended',
-            render: (text) => text ? moment(text).format('DD/MM/YYYY') : '',
+            render: (text) => text ? moment.utc(text).format('DD/MM/YYYY') : '',
         },
     ];
     
@@ -309,7 +311,7 @@ const SaleOrderReport = () => {
                 <Button
                     type="primary"
                     onClick={handleFetchSaleOrder}
-                    disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
+                    disabled={!dates[0] || !dates[1] || loading} // Disable if dates are not selected
                 >
                     ดึงข้อมูล
                 </Button>

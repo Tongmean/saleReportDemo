@@ -39,8 +39,10 @@ const MATReport = () => {
                 message.error("ฐานข้อมูลล้มเหลว โปรติดต่อผู้ดูแลระบบ [Database error]");
             } else if (error.response && error.response.data.errorType === "server-connection") {
                 message.error("ระบบล้มเหลวโปรดติดต่อผู้ดูแลระบบ [Server error]");
+            } else if (error.response?.status === 500){
+                message.error("เซิร์ฟเวอร์ประมวลผลล้มเหลว โปรดติดต่อผู้ดูแลระบบ [Server error]");
             } else {
-                message.error("ระบบล้มเหลวเหลว [undefine error]");
+                message.error("พบข้อผิดพลาดที่ไม่คาดคิด โปรดติดต่อผู้ดูแลระบบ [undefined error]");
             }
         } finally {
             setLoading(false);
@@ -130,6 +132,7 @@ const MATReport = () => {
                 <Button
                     type="primary"
                     onClick={handleFetchMAT}
+                    disabled={loading}
                 >
                     ดึงข้อมูล
                 </Button>

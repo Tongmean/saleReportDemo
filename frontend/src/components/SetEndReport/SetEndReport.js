@@ -59,8 +59,10 @@ const SetEndReport = () => {
                 message.error("ฐานข้อมูลล้มเหลว โปรติดต่อผู้ดูแลระบบ [Database error]");
             } else if (error.response && error.response.data.errorType === "server-connection") {
                 message.error("ระบบล้มเหลวโปรดติดต่อผู้ดูแลระบบ [Server error]");
+            } else if (error.response?.status === 500){
+                message.error("เซิร์ฟเวอร์ประมวลผลล้มเหลว โปรดติดต่อผู้ดูแลระบบ [Server error]");
             } else {
-                message.error("ระบบล้มเหลว [undefined error]");
+                message.error("พบข้อผิดพลาดที่ไม่คาดคิด โปรดติดต่อผู้ดูแลระบบ [undefined error]");
             }
         } finally {
             setLoading(false);
@@ -114,7 +116,7 @@ const SetEndReport = () => {
             headers.join('\t'), // Join headers with tabs
             ...setEndData.map(row => 
                 [
-                    moment(row.datedoc).format('DD/MM/YYYY'), // 'datedoc'
+                    moment.utc(row.datedoc).format('DD/MM/YYYY'), // 'datedoc'
                     formatValue('salesorderuserid', row.salesorderuserid), // 'salesorderuserid'
                     formatValue('sourceid', row.sourceid), // 'sourceid'
                     formatValue('customerid', row.customerid), // 'customerid'
@@ -129,7 +131,8 @@ const SetEndReport = () => {
                     formatValue('discount', row.discount), // 'discount'
                     formatValue('netamount', row.netamount), // 'netamount'
                     formatValue('quantityended', row.quantityended), // 'quantityended'
-                    formatValue('st_ended', row.st_ended) // 'st_ended'
+                    // formatValue('st_ended', row.st_ended) // 'st_ended'
+                    moment.utc(row.st_ended).format('DD/MM/YYYY'), // 'datedoc'
                 ].join('\t') // Join row values with tabs
             )
         ].join('\n'); // Join each row with newlines
@@ -163,7 +166,7 @@ const SetEndReport = () => {
             title: 'datedoc',
             dataIndex: 'datedoc',
             key: 'datedoc',
-            render: (text) => moment(text).format('DD/MM/YYYY'),
+            render: (text) => moment.utc(text).format('DD/MM/YYYY'),
         },
         {
             title: 'salesorderuserid',
@@ -239,7 +242,7 @@ const SetEndReport = () => {
             title: 'st_ended',
             dataIndex: 'st_ended',
             key: 'st_ended',
-            render: (text) => moment(text).format('DD/MM/YYYY'),
+            render: (text) => moment.utc(text).format('DD/MM/YYYY'),
         },
     ];
     
@@ -262,7 +265,7 @@ const SetEndReport = () => {
                 <Button
                     type="primary"
                     onClick={handleFetchSetEnd}
-                    disabled={!dates[0] || !dates[1]} // Disable if dates are not selected
+                    disabled={!dates[0] || !dates[1] || loading} // Disable if dates are not selected
                 >
                     ดึงข้อมูล
                 </Button>
